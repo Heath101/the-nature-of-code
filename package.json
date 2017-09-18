@@ -11,12 +11,10 @@
     "type": "git",
     "url": "git+https://github.com/Heath101/forty_thieves.git"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "author": "Heath Attig",
   "license": "MIT",
-  "bugs": {
-  },
+  "bugs": {},
   "devDependencies": {
     "babel-loader": "^6.2.5",
     "babel-core": "^6.0.0",

@@ -1,3 +1,7 @@
+import { getMouse } from './Mouse';
+import { generateRandomNumber } from './utils';
+import { steps } from './steps';
+
 export default class Walker {
   constructor(context) {
     this.position = {
@@ -5,14 +9,16 @@ export default class Walker {
       y: context.canvas.height / 2
     }
     this.context = context
-
+    this.mouse = getMouse(this.context)
   }
 
   drawFoo() {
+    let x, y;
+
     this.context.beginPath();
     this.context.moveTo(this.position.x, this.position.y);
-    var x, y;
-    [x, y] = this.step()
+
+    [x, y] = steps.mouseStep(this.mouse.position, this.position);
     this.position = {x: this.position.x + x, y: this.position.y + y}
 
     this.context.lineTo(this.position.x, this.position.y);
@@ -21,35 +27,7 @@ export default class Walker {
     this.context.stroke();
   }
 
-  generateRandomNumber(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  step() {
-    const stepSize = 20
-    return ([
-      this.generateRandomNumber(-1 * stepSize, stepSize),
-      this.generateRandomNumber(-1 * stepSize, stepSize)
-    ])
-    // console.log(choice);
-    // let newX
-    // switch (choice) {
-    //   case 1:
-    //     this.position = {x: origX + 8, y: origY}
-    //     break;
-    //   case 2:
-    //     this.position = {x: origX - 8, y: origY}
-    //     break;
-    //   case 3:
-    //     this.position = {x: origX, y: origY - 8}
-    //     break;
-    //   default:
-    //     this.position = {x: origX, y: origY + 8}
-    // }
-  }
-
   render() {
-
     this.drawFoo()
   }
 }
